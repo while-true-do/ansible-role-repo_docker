@@ -29,11 +29,11 @@ git clone https://github.com/while-true-do/ansible-role-repo_docker.git while_tr
 
 Used Modules:
 
-- [package_module]()
-- [rpm_key_module]()
-- [get_url_module]()
-- [ini_file_module}()
-- [file_module]()
+- [package_module](https://docs.ansible.com/ansible/latest/modules/package_module.html)
+- [rpm_key_module](https://docs.ansible.com/ansible/latest/modules/rpm_key_module.html)
+- [get_url_module](https://docs.ansible.com/ansible/latest/modules/get_url_module.html)
+- [ini_file_module](https://docs.ansible.com/ansible/latest/modules/ini_file_module.html)
+- [file_module](https://docs.ansible.com/ansible/latest/modules/file_module.html)
 
 ## Dependencies
 
