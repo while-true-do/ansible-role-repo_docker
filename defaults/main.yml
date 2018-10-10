@@ -1,0 +1,9 @@
+---
+# defaults/main.yml for repo_docker
+
+# Repository state can be "present" or "absent"
+wtd_repo_docker_state: "present"
+
+# Enable (1) or disable (0) edge and testing
+wtd_repo_docker_enable_edge: "0"
+wtd_repo_docker_enable_test: "0"

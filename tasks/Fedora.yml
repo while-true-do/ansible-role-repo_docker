@@ -1,0 +1,69 @@
+---
+# tasks/centos.yml for repo_docker
+- name: Remove CentOS docker packages
+  package:
+    name: ["docker","docker-latest"]
+    state: absent
+  become: yes
+  when: wtd_repo_docker_state == "present"
+  tags:
+   - docker
+
+- name: Install docker-ce dependencies
+  package:
+    name: ["device-mapper-persistent-data","lvm2"]
+    state: present
+  when: wtd_repo_docker_state == "present"
+  tags:
+    - docker
+
+- name: "Set docker repository key to {{ wtd_repo_docker_state }}"
+  rpm_key:
+    state: "{{ wtd_repo_docker_state }}"
+    key: "https://download.docker.com/linux/fedora/gpg"
+  become: yes
+  tags:
+    - docker
+
+- name: "Download docker-ce.repo"
+  get_url:
+    url: "https://download.docker.com/linux/fedora/docker-ce.repo"
+    dest: /etc/yum.repos.d/docker-ce.repo
+    owner: root
+    group: root
+    mode: 0644
+  become: yes
+  when: wtd_repo_docker_state == "present"
+  tags:
+    - docker
+
+- name: Configure Docker Edge
+  ini_file:
+    dest: "/etc/yum.repos.d/docker-ce.repo"
+    section: 'docker-ce-edge'
+    option: enabled
+    value: "{{ wtd_repo_docker_enable_edge }}"
+  become: yes
+  when: wtd_repo_docker_state == "present"
+  tags:
+   - docker
+
+- name: Configure Docker Test
+  ini_file:
+    dest: "/etc/yum.repos.d/docker-ce.repo"
+    section: 'docker-ce-edge'
+    option: enabled
+    value: "{{ wtd_repo_docker_enable_test }}"
+  become: yes
+  when: wtd_repo_docker_state == "present"
+  tags:
+   - docker
+
+- name: "Remove docker-ce.repo"
+  file:
+    path: /etc/yum.repos.d/docker-ce.repo
+    state: absent
+  become: yes
+  when: wtd_repo_docker_state == "absent"
+  tags:
+    - docker
