@@ -11,6 +11,13 @@
 
 Some Distributions are having their own docker version. Since docker is providing official support for the current versions, one may use them. Sometimes one may also use the edge or test version of docker.
 
+## Before Installation
+
+Please be aware, that the **docker package from the distribution is removed** during installation of docker-ce.
+This is wanted by the docker guideline, because distribution packages are conflicting with docker-ce.
+
+Reference: https://docs.docker.com/install/linux/docker-ce/centos/
+
 ## Installation
 
 Install from [Ansible Galaxy](https://galaxy.ansible.com/while_true_do/repo_docker)

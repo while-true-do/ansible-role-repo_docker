@@ -1,5 +1,6 @@
 ---
-# tasks/centos.yml for repo_docker
+# tasks/CentOS.yml for repo_docker
+# This removal is needed, accordingly to the docker documentation. docker-ce conflicts heavily with the docker from distributions.
 - name: Remove CentOS docker packages
   package:
     name: ["docker","docker-latest"]

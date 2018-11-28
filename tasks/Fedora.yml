@@ -1,6 +1,7 @@
 ---
-# tasks/centos.yml for repo_docker
-- name: Remove CentOS docker packages
+# tasks/Fedora.yml for repo_docker
+# This removal is needed, accordingly to the docker documentation. docker-ce conflicts heavily with the docker from distributions.
+- name: Remove Fedora docker packages
   package:
     name: ["docker","docker-latest"]
     state: absent
